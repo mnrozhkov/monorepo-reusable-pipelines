@@ -15,3 +15,10 @@ plots:
     x: step
 - pipeline_b_detect/j/dvclive/plots/metrics:
     x: step
+artifacts:
+  model_pipeline_a_segment_x:
+    path: pipeline_a_segment/x/models/model_pipeline_a_segment_x.file
+    type: model
+    labels:
+    - segmentation
+    - target_x
