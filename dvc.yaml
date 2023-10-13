@@ -22,3 +22,8 @@ artifacts:
     labels:
     - segmentation
     - target_x
+  model_pipeline_a_segment_y:
+    path: pipeline_a_segment/y/models/model_pipeline_a_segment_y.file
+    type: model
+    labels:
+    - segment
