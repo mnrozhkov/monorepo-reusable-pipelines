@@ -83,6 +83,30 @@ dvc remote add remote-j s3://cse-cloud-version/monorepo-reusable-pipelines/pipel
 dvc remote modify remote-j version_aware true
 ```
 
+## 2 - Store Exp artifacts to Remote Storage
+
+### Run & persist `pipeline_b_detect/i` project
+
+```bash
+dvc exp run -R pipeline_b_detect/i
+dvc push -r remote-i
+git add . && git cm "New experiment - saved"
+```
+
+### Run & persist `pipeline_b_detect/j` project
+```
+dvc exp run -R pipeline_b_detect/j
+dvc push -r remote-j
+```
+
+Result of the command above: 
+- both `pipeline_b_detect/i/dvc.lock` and `pipline_b_detect/j/dvc.lock` has `remote-j` specified 
+- 
+```yaml
+cloud:
+    remote-j:
+        ...
+```
 
 
 # Changes

@@ -15,8 +15,8 @@ stages:
     outs:
     - path: data/j/raw/data.csv
       hash: md5
-      md5: c78e7258db402a33ff5b72d4c1ac0b8e
-      size: 7023
+      md5: a03ed272ae745e614e531a5064901ca1
+      size: 7010
   process_data:
     cmd:
     - mkdir -p data/j/processed
@@ -24,8 +24,8 @@ stages:
     deps:
     - path: data/j/raw/data.csv
       hash: md5
-      md5: c78e7258db402a33ff5b72d4c1ac0b8e
-      size: 7023
+      md5: a03ed272ae745e614e531a5064901ca1
+      size: 7010
     - path: ml/src/process_data.py
       hash: md5
       md5: 52b38150b3d1a9d87001eddb33c21f81
@@ -36,15 +36,15 @@ stages:
     outs:
     - path: data/j/processed/data.csv
       hash: md5
-      md5: c78e7258db402a33ff5b72d4c1ac0b8e
-      size: 7023
+      md5: a03ed272ae745e614e531a5064901ca1
+      size: 7010
   train:
     cmd: python ml/src/train.py --type pipeline_b_detect --target j --params pipeline_b_detect/j/params.yaml
     deps:
     - path: data/j/processed/data.csv
       hash: md5
-      md5: c78e7258db402a33ff5b72d4c1ac0b8e
-      size: 7023
+      md5: a03ed272ae745e614e531a5064901ca1
+      size: 7010
     - path: ml/src/train.py
       hash: md5
       md5: b165e2c6e7136187d27fe804d9fb86b2
@@ -58,13 +58,21 @@ stages:
     outs:
     - path: pipeline_b_detect/j/models/model_pipeline_b_detect_j.file
       hash: md5
-      md5: 6f5c391522a3c06b02e6830b696321f2
-      size: 6599
+      md5: 2a6a008c3a2f7e814066c64556dfc6cc
+      size: 6586
     - path: pipeline_b_detect/j/results/metrics.json
       hash: md5
       md5: a8fd6f9c3e0fc6378e2ac847aa1e3346
       size: 39
+      cloud:
+        remote-j:
+          etag: a8fd6f9c3e0fc6378e2ac847aa1e3346
+          version_id: owpZrgmQ6yWRVIzt9sS2WgTVyQutKkR5
     - path: pipeline_b_detect/j/results/plots/metrics/accuracy.tsv
       hash: md5
-      md5: 619eee96eab5077b578cb666d8295986
+      md5: 2cf25748267d8339b19ea0b1a5fceeb0
       size: 184
+      cloud:
+        remote-j:
+          etag: 2cf25748267d8339b19ea0b1a5fceeb0
+          version_id: 1S81hUrmeo8IVCH66D8k.r3WxELXvynE
