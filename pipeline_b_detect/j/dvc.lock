@@ -47,8 +47,8 @@ stages:
       size: 7023
     - path: ml/src/train.py
       hash: md5
-      md5: ab57e52b982359a4814ac85b8c75a59f
-      size: 2461
+      md5: b165e2c6e7136187d27fe804d9fb86b2
+      size: 2985
     params:
       pipeline_b_detect/j/params.yaml:
         train:
@@ -60,3 +60,11 @@ stages:
       hash: md5
       md5: 6f5c391522a3c06b02e6830b696321f2
       size: 6599
+    - path: pipeline_b_detect/j/results/metrics.json
+      hash: md5
+      md5: a8fd6f9c3e0fc6378e2ac847aa1e3346
+      size: 39
+    - path: pipeline_b_detect/j/results/plots/metrics/accuracy.tsv
+      hash: md5
+      md5: 619eee96eab5077b578cb666d8295986
+      size: 184
