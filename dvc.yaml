@@ -9,3 +9,9 @@ plots:
     x: step
 - pipeline_a_segment/x/dvclive/plots/metrics:
     x: step
+artifacts:
+  model_pipeline_a_segment_z:
+    path: pipeline_a_segment/z/models/model_pipeline_a_segment_z.file
+    type: model
+    labels:
+    - pipeline_a_segment
