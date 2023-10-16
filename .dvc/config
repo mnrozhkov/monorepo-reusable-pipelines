@@ -1,6 +1,6 @@
 ['remote "remote-i"']
-    url = s3://cse-cloud-version/monorepo-reusable-pipelines/pipeline_b_detect/i/
+    url = s3://cse-cloud-version/monorepo-reusable-pipelines/remote-i/
     version_aware = true
 ['remote "remote-j"']
-    url = s3://cse-cloud-version/monorepo-reusable-pipelines/pipeline_b_detect/j/
+    url = s3://cse-cloud-version/monorepo-reusable-pipelines/remote-j/
     version_aware = true
