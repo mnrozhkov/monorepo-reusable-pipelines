@@ -47,8 +47,8 @@ stages:
       size: 8096
     - path: ml/src/train.py
       hash: md5
-      md5: db3846d63e74681eab2922ca69436ea6
-      size: 1289
+      md5: ab57e52b982359a4814ac85b8c75a59f
+      size: 2461
     params:
       pipeline_a_segment/z/params.yaml:
         train:

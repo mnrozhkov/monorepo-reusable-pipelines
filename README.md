@@ -7,12 +7,12 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Run (`type_a` project)
+# Run (`pipeline_a_segment` project)
 
 ```
-dvc exp run -R pipelines/type_a/x
-dvc exp run -R pipelines/type_a/y
-dvc exp run -R pipelines/type_a/z
+dvc exp run -R pipeline_a_segment/x
+dvc exp run -R pipeline_a_segment/y
+dvc exp run -R pipeline_a_segment/z
 
 ```
 
