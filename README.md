@@ -50,3 +50,12 @@ Examples
 ./run_targets.sh pipeline_a_segment x,y,z
 ./run_targets.sh pipeline_b_detect i,j
 ```
+
+
+# Changes
+
+**Oct 16, 2023 - Add metrics tracking**
+- metrics saved with DVCLive (in `ml/src/train.py` script)
+- for project `pipeline_a_segment` - metrics saved in `PROJECT/dvclive/`, metrics/plot files automatically added to the root `dvc.yaml`, version with Git 
+- for project `pipeline_b_detect` - metrics saved in `PROJECT/results/`, metrics/plot files specified in `dvc.yaml` (as outs in the `train` stage), version with DVC (not Git)
+- in both cases DVC updates metrics/plots in Studio/VSCode in real time
