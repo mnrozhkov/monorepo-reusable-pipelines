@@ -15,8 +15,8 @@ stages:
     outs:
     - path: data/i/raw/data.csv
       hash: md5
-      md5: 6fa7e15732602c6331a40219a85effe3
-      size: 6965
+      md5: c8f08e706e5315ef8279968f1febb1b9
+      size: 6973
   process_data:
     cmd:
     - mkdir -p data/i/processed
@@ -24,8 +24,8 @@ stages:
     deps:
     - path: data/i/raw/data.csv
       hash: md5
-      md5: 6fa7e15732602c6331a40219a85effe3
-      size: 6965
+      md5: c8f08e706e5315ef8279968f1febb1b9
+      size: 6973
     - path: ml/src/process_data.py
       hash: md5
       md5: 52b38150b3d1a9d87001eddb33c21f81
@@ -36,15 +36,15 @@ stages:
     outs:
     - path: data/i/processed/data.csv
       hash: md5
-      md5: 6fa7e15732602c6331a40219a85effe3
-      size: 6965
+      md5: c8f08e706e5315ef8279968f1febb1b9
+      size: 6973
   train:
     cmd: python ml/src/train.py --type pipeline_b_detect --target i --params pipeline_b_detect/i/params.yaml
     deps:
     - path: data/i/processed/data.csv
       hash: md5
-      md5: 6fa7e15732602c6331a40219a85effe3
-      size: 6965
+      md5: c8f08e706e5315ef8279968f1febb1b9
+      size: 6973
     - path: ml/src/train.py
       hash: md5
       md5: b165e2c6e7136187d27fe804d9fb86b2
@@ -58,13 +58,21 @@ stages:
     outs:
     - path: pipeline_b_detect/i/models/model_pipeline_b_detect_i.file
       hash: md5
-      md5: 775dbae227d96571c005d9ea86249bd5
-      size: 6545
+      md5: 1c25cdf45d784a7d353ea96226ae600c
+      size: 6553
     - path: pipeline_b_detect/i/results/metrics.json
       hash: md5
-      md5: 29c1fb0f8a80a1d80ad7e042c7604ea0
+      md5: 89de5302f690933d57f37eef76eb3cad
       size: 39
+      cloud:
+        remote-i:
+          etag: 89de5302f690933d57f37eef76eb3cad
+          version_id: 0YNndJwkfuz_GN2By9Bp20PxkOoyuqM.
     - path: pipeline_b_detect/i/results/plots/metrics/accuracy.tsv
       hash: md5
-      md5: 5aa3d138a073ba72180b90cce1a00a6e
+      md5: 50ac5196b9b49bc5203801ce0bdabdc4
       size: 184
+      cloud:
+        remote-i:
+          etag: 50ac5196b9b49bc5203801ce0bdabdc4
+          version_id: BHbOLNnNAOJf_08XsqSx8OT.1n92fm4z
