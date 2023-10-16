@@ -1,17 +1,11 @@
 metrics:
-- pipeline_a_segment/x/dvclive/metrics.json
 - pipeline_a_segment/y/dvclive/metrics.json
 - pipeline_a_segment/z/dvclive/metrics.json
-- pipeline_b_detect/i/dvclive/metrics.json
-- pipeline_b_detect/j/dvclive/metrics.json
+- pipeline_a_segment/x/dvclive/metrics.json
 plots:
-- pipeline_a_segment/x/dvclive/plots/metrics:
-    x: step
 - pipeline_a_segment/y/dvclive/plots/metrics:
     x: step
 - pipeline_a_segment/z/dvclive/plots/metrics:
     x: step
-- pipeline_b_detect/i/dvclive/plots/metrics:
-    x: step
-- pipeline_b_detect/j/dvclive/plots/metrics:
+- pipeline_a_segment/x/dvclive/plots/metrics:
     x: step

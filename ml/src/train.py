@@ -42,18 +42,32 @@ def train(project_dir: str, processed_data: str, model_dir: str, model_type: str
     import random
     from dvclive import Live
     
-    with Live(
-        dir=f"{project_dir}/dvclive", 
-        save_dvc_exp=False,
-        dvcyaml=True,
-        ) as live:
-        
-        choices = [i for i in range(95-epochs*2, 95-epochs)]
-        randomlist = random.sample(choices, epochs)  
-          
-        for i,n in enumerate(randomlist):
-            live.log_metric("accuracy", i + n )
-            live.next_step()
+    if model_type == 'pipeline_a_segment':
+        with Live(
+            dir=f"{project_dir}/dvclive", 
+            save_dvc_exp=False,
+            dvcyaml=True,
+            ) as live:
+            
+            choices = [i for i in range(95-epochs*2, 95-epochs)]
+            randomlist = random.sample(choices, epochs)  
+            
+            for i,n in enumerate(randomlist):
+                live.log_metric("accuracy", i + n )
+                live.next_step()
+    else: 
+        with Live(
+            dir=f"{project_dir}/results", 
+            save_dvc_exp=False,
+            dvcyaml=False,
+            ) as live:
+            
+            choices = [i for i in range(95-epochs*2, 95-epochs)]
+            randomlist = random.sample(choices, epochs)  
+            
+            for i,n in enumerate(randomlist):
+                live.log_metric("accuracy", i + n )
+                live.next_step()
     
 
 
