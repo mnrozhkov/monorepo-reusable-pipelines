@@ -52,6 +52,27 @@ Examples
 ```
 
 
+# Setup Remote Storages
+
+Add `local` remote
+```
+mkdir /tmp/monorepo-reusable-pipelines
+dvc remote add --local -d local /tmp/monorepo-reusable-pipelines
+```
+
+Add `remote-i` remote
+```
+dvc remote add remote-i s3://cse-cloud-version/monorepo-reusable-pipelines/pipeline_b_detect/i/ 
+dvc remote modify remote-i version_aware true
+```
+
+Add `remote-j` remote
+```
+dvc remote add remote-j s3://cse-cloud-version/monorepo-reusable-pipelines/pipeline_b_detect/j/ 
+dvc remote modify remote-j version_aware true
+```
+
+
 # Changes
 
 **Oct 16, 2023 - Add metrics tracking**
