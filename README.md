@@ -83,9 +83,18 @@ dvc remote add remote-j s3://cse-cloud-version/monorepo-reusable-pipelines/pipel
 dvc remote modify remote-j version_aware true
 ```
 
-## 2 - Store Exp artifacts to Remote Storage
+## 2 - Use multiple Remote Storages
+Notes:
+- In `dvc.yaml`, you can set a `remote:` field for the outputs to control which remote they use
 
-### Run & persist `pipeline_b_detect/i` project
+Example
+```yaml
+    outs:
+      - pipeline_b_detect/i/results/metrics.json:
+          remote: remote-i
+```
+
+**2.1 - Run & persist `pipeline_b_detect/i` project**
 
 ```bash
 dvc exp run -R pipeline_b_detect/i
@@ -93,20 +102,17 @@ dvc push -r remote-i
 git add . && git cm "New experiment - saved"
 ```
 
-### Run & persist `pipeline_b_detect/j` project
-```
+**2.2 Run & persist `pipeline_b_detect/j` project**
+```bash
 dvc exp run -R pipeline_b_detect/j
 dvc push -r remote-j
+git add . && git cm "New experiment j - saved"
 ```
 
-Result of the command above: 
-- both `pipeline_b_detect/i/dvc.lock` and `pipline_b_detect/j/dvc.lock` has `remote-j` specified 
-- 
-```yaml
-cloud:
-    remote-j:
-        ...
-```
+Expected Results
+
+- `pipeline_b_detect/i/dvc.lock` has only  `remote-i` specified for outs
+- `pipeline_b_detect/j/dvc.lock` has only  `remote-j` specified for outs
 
 
 # Changes
