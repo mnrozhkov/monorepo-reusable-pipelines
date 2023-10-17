@@ -7,13 +7,22 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Run (`pipeline_a_segment` project)
+# Run  pipelines 
+
+### Run `pipeline_a_segment` projects
 
 ```
 dvc exp run -R pipeline_a_segment/x
 dvc exp run -R pipeline_a_segment/y
 dvc exp run -R pipeline_a_segment/z
 
+```
+
+### Run `pipeline_b_detect` projects
+
+```
+dvc exp run -R pipeline_b_detect/i
+dvc exp run -R pipeline_b_detect/j
 ```
 
 ## Run a pipeline (target/data/customer) 
@@ -49,6 +58,54 @@ Examples
  # Run a detection pipeline for each target
 ./run_targets.sh pipeline_a_segment x,y,z
 ./run_targets.sh pipeline_b_detect i,j
+```
+
+
+# Cloud Versioning Workflows
+
+## 1 - Setup Remote Storages
+
+Add `local` remote
+```
+mkdir /tmp/monorepo-reusable-pipelines
+dvc remote add --local -d local /tmp/monorepo-reusable-pipelines
+```
+
+Add `remote-i` remote
+```
+dvc remote add remote-i s3://cse-cloud-version/monorepo-reusable-pipelines/remote-i/ 
+dvc remote modify remote-i version_aware true
+```
+
+Add `remote-j` remote
+```
+dvc remote add remote-j s3://cse-cloud-version/monorepo-reusable-pipelines/pipeline_b_detect/j/ 
+dvc remote modify remote-j version_aware true
+```
+
+## 2 - Store Exp artifacts to Remote Storage
+
+### Run & persist `pipeline_b_detect/i` project
+
+```bash
+dvc exp run -R pipeline_b_detect/i
+dvc push -r remote-i
+git add . && git cm "New experiment - saved"
+```
+
+### Run & persist `pipeline_b_detect/j` project
+```
+dvc exp run -R pipeline_b_detect/j
+dvc push -r remote-j
+```
+
+Result of the command above: 
+- both `pipeline_b_detect/i/dvc.lock` and `pipline_b_detect/j/dvc.lock` has `remote-j` specified 
+- 
+```yaml
+cloud:
+    remote-j:
+        ...
 ```
 
 

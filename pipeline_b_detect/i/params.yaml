@@ -1,4 +1,4 @@
-project: pipeline_b_detect
+git add . && git cm "New experiment - saved"project: pipeline_b_detect
 target: i
 data_dir: data
 model_dir: models
