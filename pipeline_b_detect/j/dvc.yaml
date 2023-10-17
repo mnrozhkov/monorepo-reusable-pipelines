@@ -41,6 +41,7 @@ stages:
       - pipeline_b_detect/${target}/${model_dir}/model_pipeline_b_detect_${target}.file:
           cache: false
       - pipeline_b_detect/${target}/results/metrics.json:
-          remote: remote-j
+          remote: remote-${target}
       - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
-          remote: remote-j
+          remote: remote-${target}
+

@@ -44,10 +44,3 @@ stages:
           remote: remote-${target}
       - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
           remote: remote-${target}
-    # metrics:
-    #   - pipeline_b_detect/${target}/results/metrics.json
-    # plots:
-    #   - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
-    #       x: step	
-    #       y: accuracy
-
