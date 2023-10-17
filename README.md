@@ -122,3 +122,7 @@ Expected Results
 - for project `pipeline_a_segment` - metrics saved in `PROJECT/dvclive/`, metrics/plot files automatically added to the root `dvc.yaml`, version with Git 
 - for project `pipeline_b_detect` - metrics saved in `PROJECT/results/`, metrics/plot files specified in `dvc.yaml` (as outs in the `train` stage), version with DVC (not Git)
 - in both cases DVC updates metrics/plots in Studio/VSCode in real time
+
+
+**Oct 17, 2023 - 2 - Use multiple Remote Storages**
+- Projects `pipeline_b_detect` use different Remote Storages (`version_aware=True`)
