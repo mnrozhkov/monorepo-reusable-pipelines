@@ -40,9 +40,14 @@ stages:
     outs:
       - pipeline_b_detect/${target}/${model_dir}/model_pipeline_b_detect_${target}.file:
           cache: false
-    metrics:
-      - pipeline_b_detect/${target}/results/metrics.json
-    plots:
+      - pipeline_b_detect/${target}/results/metrics.json:
+          remote: remote-${target}
       - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
-          x: step	
-          y: accuracy
+          remote: remote-${target}
+    # metrics:
+    #   - pipeline_b_detect/${target}/results/metrics.json
+    # plots:
+    #   - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
+    #       x: step	
+    #       y: accuracy
+
