@@ -24,3 +24,6 @@ artifacts:
     type: model
     labels:
     - segment
+  model_pipeline_b_detect_i:
+    path: pipeline_b_detect/i/models/model_pipeline_b_detect_i.file
+    type: model
