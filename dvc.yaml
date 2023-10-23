@@ -15,3 +15,6 @@ artifacts:
     type: model
     labels:
     - pipeline_a_segment
+  model_pipeline_b_detect_test:
+    path: pipeline_b_detect/test/models/model_pipeline_b_detect_test.file
+    type: model
