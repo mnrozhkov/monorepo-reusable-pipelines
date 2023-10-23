@@ -1,0 +1,11 @@
+project: pipeline_b_detect
+target: test
+data_dir: data
+model_dir: models
+result_dir: results
+
+train: 
+  epochs: 45
+  batch_size: 16
+  learning_rate: 0.01
+  

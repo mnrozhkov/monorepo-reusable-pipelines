@@ -1,0 +1,46 @@
+stages:
+  collect_data:
+    cmd: 
+    - mkdir -p ${data_dir}/${target}/raw
+    - python ml/src/collect_data.py --target ${target} --params pipeline_b_detect/${target}/params.yaml
+    wdir: ../../
+    params:
+      - pipeline_b_detect/${target}/params.yaml:
+        - target
+    deps:
+      - ml/src/collect_data.py
+    outs:
+      - ${data_dir}/${target}/raw/data.csv:
+          cache: false
+  
+  process_data:
+    cmd: 
+    - mkdir -p ${data_dir}/${target}/processed
+    - python ml/src/process_data.py --target ${target} --params pipeline_b_detect/${target}/params.yaml
+    wdir: ../../
+    params:
+      - pipeline_b_detect/${target}/params.yaml:
+        - target
+    deps:
+      - ml/src/process_data.py
+      - ${data_dir}/${target}/raw/data.csv
+    outs:
+      - ${data_dir}/${target}/processed/data.csv:
+          cache: false
+  
+  train:
+    cmd: python ml/src/train.py --type pipeline_b_detect --target ${target} --params pipeline_b_detect/${target}/params.yaml
+    wdir: ../../
+    params:
+      - pipeline_b_detect/${target}/params.yaml:
+        - train
+    deps:
+      - ml/src/train.py
+      - ${data_dir}/${target}/processed/data.csv
+    outs:
+      - pipeline_b_detect/${target}/${model_dir}/model_pipeline_b_detect_${target}.file:
+          cache: false
+      - pipeline_b_detect/${target}/results/metrics.json:
+          remote: remote-j
+      - pipeline_b_detect/${target}/results/plots/metrics/accuracy.tsv:
+          remote: remote-j
