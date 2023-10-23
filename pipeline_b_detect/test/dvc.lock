@@ -1,0 +1,70 @@
+schema: '2.0'
+stages:
+  collect_data:
+    cmd:
+    - mkdir -p data/test/raw
+    - python ml/src/collect_data.py --target test --params pipeline_b_detect/test/params.yaml
+    deps:
+    - path: ml/src/collect_data.py
+      hash: md5
+      md5: 622a14e879e077e3ec7480459dcc4088
+      size: 1229
+    params:
+      pipeline_b_detect/test/params.yaml:
+        target: test
+    outs:
+    - path: data/test/raw/data.csv
+      hash: md5
+      md5: 4e630d3344e0e6840adf01ea021a2990
+      size: 7717
+  process_data:
+    cmd:
+    - mkdir -p data/test/processed
+    - python ml/src/process_data.py --target test --params pipeline_b_detect/test/params.yaml
+    deps:
+    - path: data/test/raw/data.csv
+      hash: md5
+      md5: 4e630d3344e0e6840adf01ea021a2990
+      size: 7717
+    - path: ml/src/process_data.py
+      hash: md5
+      md5: 52b38150b3d1a9d87001eddb33c21f81
+      size: 925
+    params:
+      pipeline_b_detect/test/params.yaml:
+        target: test
+    outs:
+    - path: data/test/processed/data.csv
+      hash: md5
+      md5: 4e630d3344e0e6840adf01ea021a2990
+      size: 7717
+  train:
+    cmd: python ml/src/train.py --type pipeline_b_detect --target test --params pipeline_b_detect/test/params.yaml
+    deps:
+    - path: data/test/processed/data.csv
+      hash: md5
+      md5: 4e630d3344e0e6840adf01ea021a2990
+      size: 7717
+    - path: ml/src/train.py
+      hash: md5
+      md5: b165e2c6e7136187d27fe804d9fb86b2
+      size: 2985
+    params:
+      pipeline_b_detect/test/params.yaml:
+        train:
+          epochs: 45
+          batch_size: 16
+          learning_rate: 0.01
+    outs:
+    - path: pipeline_b_detect/test/models/model_pipeline_b_detect_test.file
+      hash: md5
+      md5: 3b57d8e9781e118b5c3a251c52aa1f00
+      size: 7253
+    - path: pipeline_b_detect/test/results/metrics.json
+      hash: md5
+      md5: 509182eac08dbe5a25dcf75d83366b1b
+      size: 39
+    - path: pipeline_b_detect/test/results/plots/metrics/accuracy.tsv
+      hash: md5
+      md5: a1dd62b0a9c36ba982bfe4a75af73d75
+      size: 273
